@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Ensure content takes up at least the full height of the viewport */
+}
+
+.header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.container {
+  width: 50%; /* Adjusted width to be 90% of the viewport width */
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+  margin-bottom: 20px; /* Reduced margin bottom for tighter spacing between sections */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  margin-top: 0;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+.input-text {
+  width: 100%; /* Make the input box width span the entire container */
+  padding: 10px; /* Add padding for spacing inside the input box */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+  border-radius: 5px; /* Add rounded corners */
+  margin-bottom: 10px; /* Add some space below the input box */
+}
+
+.input-text::placeholder {
+  color: #999; /* Define the placeholder text color */
+}
+
+.input-text:focus {
+  outline: none; /* Remove the default focus outline */
+  border-color: #007bff; /* Change border color when input box is focused */
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Admin Dashboard</h1>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <h2>Registrations</h2>
+      <div class="button-container">
+        <form action="viewreg.jsp">
+          <button class="button">View Registrations</button>
+        </form>
+      </div>
+    </div>
+   
+    <div class="section">
+      <h2>Menu Management</h2>
+      <div class="button-container">
+        <form action="editmenu.jsp">
+          <button class="button">Edit Menu</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Orders</h2>
+      <div class="button-container">
+        <form action="vieworder.jsp">
+          <button class="button">View Orders</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="section">
+        <h2>user order details</h2>
+        <div class="button-container">
+          <form action="userorder.jsp">
+            <input type="text" name="username" placeholder="Enter Username">
+            <button class="button">View Orders</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Payment Details</h2>
+        <div class="button-container">
+          <form action="paydet.jsp">
+            <button class="button">viwe payments</button>
+          </form>
+        </div>
+      </div>
+
+  </div>
+</body>
+</html>

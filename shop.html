@@ -1,0 +1,372 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Card Page</title>
+    <style>
+        
+        card-container {
+        display:flow-root;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 30px;
+        }
+        body{
+            background: #333;
+        }
+
+        /* Basic styling for the card layout */
+        .card {
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 30px;
+            margin: 50px;
+            float: left;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        /* Style for product image */
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Style for product title */
+        .card h2 {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #c4bebe;
+        }
+
+        /* Style for product description */
+        .card p {
+            font-size: 1em;
+            color: #fcf8f8;
+        }
+
+        /* Style for product price */
+        .card .price {
+            font-size: 1.2em;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        /* Styling for shopping cart */
+        .shopping-cart {
+            width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 50px;
+            margin: 20px;
+            float: left;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+        }
+        
+        /* Style for cart item */
+        .cart-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Style for product details in cart */
+        .cart-item-details {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Style for quantity input */
+        .quantity-input {
+            width: 50px;
+            margin-top: 5px;
+        }
+
+        /* Style for total amount */
+        #total-amount {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Button style */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 700px) {
+            .card {
+                width: 120%;
+                margin: 20px 0;
+            }
+
+            .shopping-cart {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+        h1 {   
+              text-align: center;
+              background:#ccc;
+              font-size: 60px;
+        }
+        
+    </style>
+</head>
+<body>
+<h1>Pizza Delightt..! </h1>
+<div id="username"></div>
+<div class="pb">
+<div class="card">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2022/3/CE/GU/AT/51519897/tandoori-paneer-frozen-pizza.png" alt="Product 1">
+    <h2>Paneer Pizza</h2>
+    <p> Paneer, spices, cheese, crust.</p>
+    <div class="price"> Rs 250.00</div>
+    <input type="number" class="quantity-input" id="quantity1" value="1" min="1">
+    <button onclick="addToCart('Product1', ' Paneer, spices, cheese, crust.', 250.00, 'quantity1')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://www.modernfoods.co.in/wp-content/uploads/2018/06/360pizza.png" alt="Product 2">
+    <h2>Margherita Pizza</h2>
+    <p> Tomato, mozzarella, basil, olive.</p>
+    <div class="price"> Rs 245.00</div>
+    <input type="number" class="quantity-input" id="quantity2" value="1" min="1">
+<button onclick="addToCart('product2', 'Margherita Pizza', ' Tomato, mozzarella, basil, olive.', 245.00, 'quantity2')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://w0.peakpx.com/wallpaper/985/474/HD-wallpaper-pizza-delicious-food-mushrooms-olives.jpg" alt="Product 3">
+    <h2> Mushroom Pizza</h2>
+    <p> Mushroom, cheese, sauce, crust.</p>
+    <div class="price">Rs 220.00 </div>
+    <input type="number" class="quantity-input" id="quantity3" value="1" min="1">
+    <button onclick="addToCart('product3', 'Mushroom Pizza', ' Mushroom, cheese, sauce, crust.', 220.00, 'quantity3')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://c0.wallpaperflare.com/preview/452/689/95/pizza-delicious-food-nutrition.jpg" alt="Product 4">
+    <h2> Babycorn Pizza</h2>
+    <p> Corn, cheese, crust, seasoning.</p>
+    <div class="price">Rs 140.00 </div>
+    <input type="number" class="quantity-input" id="quantity4" value="1" min="1">
+    <button onclick="addToCart('product4', 'Babycorn Pizza', ' Corn, cheese, crust, seasoning.',140.00, 'quantity4')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://e0.pxfuel.com/wallpapers/130/939/desktop-wallpaper-pizza-rolls-pepperoni-pizza.jpg" alt="Product 5">
+    <h2> Pepperoni</h2>
+    <p>Pepperoni, cheese, sauce, crust.</p>
+    <div class="price">Rs 280.00 </div>
+    <input type="number" class="quantity-input" id="quantity5" value="1" min="1">
+    <button onclick="addToCart('product3', 'Pepperoni', 'Pepperoni, cheese, sauce, crust.', 280.00, 'quantity5')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://img.freepik.com/free-photo/freshly-baked-pizza-rustic-wooden-table-generated-by-ai_24640-80691.jpg" alt="Product 6">
+    <h2> Spicy Chicken</h2>
+    <p>Chicken, spice, cheese, crust.</p>
+    <div class="price">Rs 220.00 </div>
+    <input type="number" class="quantity-input" id="quantity6" value="1" min="1">
+    <button onclick="addToCart('product6', 'Spicy Chicken Pizza', 'Chicken, spice, cheese, crust.', 220.00, 'quantity6')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://images6.alphacoders.com/698/698287.jpg" alt="Product 7">
+    <h2> Hawaiian</h2>
+    <p>Ham, pineapple, cheese, sauce.</p>
+    <div class="price">Rs 235.00 </div>
+    <input type="number" class="quantity-input" id="quantity7" value="1" min="1">
+    <button onclick="addToCart('product7', 'Hawaiian', 'Ham, pineapple, cheese, sauce.', 235.00, 'quantity7')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://t4.ftcdn.net/jpg/05/57/34/55/360_F_557345513_XrJGwC2V6ZgRu3bnzIWHsIagKWxFoX2R.jpg" alt="Product 8">
+    <h2> Sausage</h2>
+    <p> Sausage, cheese, sauce, crust.</p>
+    <div class="price">Rs 215.00 </div>
+    <input type="number" class="quantity-input" id="quantity8" value="1" min="1">
+    <button onclick="addToCart('product8', 'Sausage', ' Sausage, cheese, sauce, crust.', 215.00, 'quantity8')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://img.freepik.com/premium-photo/four-cheese-quattro-formaggi-pizza-dark-wooden-background_908985-30408.jpg" alt="Product 9">
+    <h2> Quattro Formaggi</h2>
+    <p>Four cheeses, savory delight.</p>
+    <div class="price">Rs 450.00</div>
+    <input type="number" class="quantity-input" id="quantity9" value="1" min="1">
+    <button onclick="addToCart('product9', 'Quattro Formaggi', 'Four cheeses, savory delight.',450.00, 'quantity9')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://as2.ftcdn.net/v2/jpg/05/82/55/25/1000_F_582552585_Bf8LdWLCnBio04soT5biRVVXqFSfRH3z.jpg" alt="Product 10">
+    <h2> Capricciosa</h2>
+    <p>Ham, mushrooms, artichokes, olives, cheese.</p>
+    <div class="price">Rs 415.00 </div>
+    <input type="number" class="quantity-input" id="quantity10" value="1" min="1">
+    <button onclick="addToCart('product10', 'Capricciosa', 'Ham, mushrooms, artichokes, olives, cheese.',415.00, 'quantity10')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://img.kidspot.com.au/gudejqR_/kk/2016/09/2374-503569-1.jpg" alt="Product 11">
+    <h2> Nutella</h2>
+    <p>Sweet, dough, chocolate, hazelnut.</p>
+    <div class="price">Rs 250.00</div>
+    <input type="number" class="quantity-input" id="quantity11" value="1" min="1">
+    <button onclick="addToCart('product11', 'Nutella', 'Sweet, dough, chocolate, hazelnut.', 250.00, 'quantity11')">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="https://t4.ftcdn.net/jpg/02/99/87/65/360_F_299876583_8HsxAT0uJO6Dx6TmoyhzzYEBGgfABQT9.jpg" alt="Product 12">
+    <h2> Calzone</h2>
+    <p>Folded, stuffed, baked, savory.</p>
+    <div class="price">Rs 500.00</div>
+    <input type="number" class="quantity-input" id="quantity12" value="1" min="1">
+    <button onclick="addToCart('product12', 'Calzone', 'Folded, stuffed, baked, savory.', 500.00, 'quantity12')">Add to Cart</button>
+</div>
+
+
+<div class="shopping-cart">
+    <h2>Shopping Cart</h2>
+    <div id="cart-items"></div>
+    <div id="total-amount">Total Amount: $0.00</div>
+    <button onclick="buyNow()">Buy Now</button>
+    
+
+</div>
+</div>
+
+<!-- JavaScript for adding products to cart -->
+<script>
+    function addToCart(productId, productName, productDescription, productPrice, quantityId) {
+        var quantity = parseInt(document.getElementById(quantityId).value);
+        var cartItems = document.getElementById('cart-items');
+        var cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        var subtotal = (productPrice * quantity).toFixed(2);
+        cartItem.innerHTML = `
+            <h3>${productName}</h3>
+            <p class="cart-item-details">${productDescription}</p>
+            <p class="cart-item-details">Price: $${productPrice}</p>
+            <p class="cart-item-details">Quantity: ${quantity}</p>
+            <p class="cart-item-details">Subtotal: $${subtotal}</p>
+            <button onclick="removeFromCart(this)">Remove</button>
+        `;
+        cartItems.appendChild(cartItem);
+        updateTotalAmount();
+        alert(quantity + ' of Product ' + productName + ' added to cart!');
+    }
+
+    function removeFromCart(button) {
+        button.parentNode.remove();
+        updateTotalAmount();
+    }
+
+    function updateTotalAmount() {
+        var cartItems = document.getElementsByClassName('cart-item');
+        var total = 0;
+        for (var i = 0; i < cartItems.length; i++) {
+            var subtotal = parseFloat(cartItems[i].querySelector('.cart-item-details:nth-child(5)').textContent.replace('Subtotal: $', ''));
+            total += subtotal;
+        }
+        document.getElementById('total-amount').textContent = 'Total Amount: $' + total.toFixed(2);
+    }
+
+    
+    function buyNow() {
+    // Get the username from the query parameters
+    var queryParams = getQueryParams();
+    var username = queryParams['username'];
+
+    // Get all cart items
+    var cartItems = document.querySelectorAll('.cart-item');
+    
+    // Create an array to hold the cart data
+    var cartData = [];
+    
+    // Loop through each cart item and extract relevant data
+    cartItems.forEach(function(item) {
+        var productName = item.querySelector('h3').textContent;
+        var productDescription = item.querySelectorAll('.cart-item-details')[0].textContent;
+        var productPrice = parseFloat(item.querySelectorAll('.cart-item-details')[1].textContent.replace('Price: $', ''));
+        var quantity = parseInt(item.querySelectorAll('.cart-item-details')[2].textContent.replace('Quantity: ', ''));
+        var subtotal = parseFloat(item.querySelectorAll('.cart-item-details')[3].textContent.replace('Subtotal: $', ''));
+        
+        // Extract the product ID from the addToCart function call
+        var productId = item.querySelector('button').getAttribute('onclick').split("'")[1];
+        
+        // Create an object for each item and push it to the cartData array
+        var itemData = {
+            productId: productId,
+            productName: productName,
+            productDescription: productDescription,
+            productPrice: productPrice,
+            quantity: quantity,
+            subtotal: subtotal
+        };
+        cartData.push(itemData);
+    });
+    
+    // Convert the cartData array to a JSON string
+    var cartDataJSON = JSON.stringify(cartData);
+    
+    // Encode the cartDataJSON string to include in the URL
+    var encodedCartData = encodeURIComponent(cartDataJSON);
+    
+    // Redirect to myorder.html with the cart data and username in the URL
+    window.location.href = 'myorder.html?cartData=' + encodedCartData + '&username=' + encodeURIComponent(username);
+}
+
+    
+</script>
+<script>
+    // Function to get query parameters from URL
+    function getQueryParams() {
+        var params = {};
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+            params[key] = value;
+        });
+        return params;
+    }
+
+    // Retrieve username from query parameters
+    var queryParams = getQueryParams();
+    var username = queryParams['username'];
+
+    // Check if username exists
+    if (username) {
+        // Display a welcome message
+        document.getElementById('username').innerHTML = '<h2>Welcome, ' + username + '!</h2>';
+    } else {
+        // Handle the case when username is not found in query parameters
+        document.getElementById('username').innerHTML = '<h2>Welcome, Guest!</h2>';
+    }
+
+    // Your existing JavaScript functions for adding products to cart
+    /*function redirectToMyOrder() {
+            // Construct the URL with the username parameter
+            var myOrderURL = 'myorder.html?username=' + encodeURIComponent(username);
+            // Redirect to myorder.html
+            window.location.href = myOrderURL;
+        }*/
+</script>
+</body>
+</html>       

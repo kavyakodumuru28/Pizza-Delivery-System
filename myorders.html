@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 2px solid #333;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+        
+        .place-order-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .place-order-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="username"></div>
+    <h2>My Order</h2>
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="order-details">
+            <!-- JavaScript will populate this tbody -->
+        </tbody>
+    </table>
+
+    <script>
+        window.onload = function() {
+            // Get the cart data from the URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var cartDataJSON = urlParams.get('cartData');
+            
+            // Parse the JSON string back into an array
+            var cartData = JSON.parse(decodeURIComponent(cartDataJSON));
+            
+            // Reference to the tbody element
+            var orderDetails = document.getElementById('order-details');
+            
+            // Loop through each item in the cart data and populate the table
+            cartData.forEach(function(item) {
+                var row = document.createElement('tr');
+                
+                // Populate each cell with product details
+                row.innerHTML = `
+                <form  action="myorder.jsp" method="post">
+                   <div class='order-details'>
+                   <input type="hidden" name="pname" value="${item.productName}" ><td>${item.productName}</td>
+                    <td>${item.productDescription}</td>
+                    <td>$${item.productPrice.toFixed(2)}</td>
+                    <input type="hidden" name="pq" value="${item.quantity}" > <td>${item.quantity}</td>
+                    <input type="hidden" name="pt" value="${item.subtotal.toFixed(2)}" ><td>$${item.subtotal.toFixed(2)}</td>
+                    <td><button onclick="submitOrderForm('${item.productName}', ${item.quantity}, ${item.subtotal})">Place Order</button></td> <!-- Place Order button -->
+                    
+                `;
+                
+                // Append the row to the table
+                orderDetails.appendChild(row);
+            });
+        };
+
+        function placeOrder(productName, quantity, subtotal) {
+            // Your code to place the order for the specified product goes here
+            alert(`Placed order for ${quantity} ${productName}(s) successfully! Total: $${subtotal.toFixed(2)}`);
+        }
+    </script>
+    <script>
+        
+        function submitOrderForm(productName, quantity, subtotal) {
+    var form = document.createElement('form');
+    form.setAttribute('action', 'home.html'); // Change the action to home.html
+    form.setAttribute('method', 'get'); // Change the method to get
+
+    // Get the username from the query parameters
+    var queryParams = getQueryParams();
+    var username = queryParams['username'];
+
+    // Add input fields for order details and username
+    form.innerHTML = `
+        <input type="hidden" name="pname" value="${productName}">
+        <input type="hidden" name="pq" value="${quantity}">
+        <input type="hidden" name="pt" value="${subtotal.toFixed(2)}">
+        <input type="hidden" name="username" value="${username}">
+    `;
+    document.body.appendChild(form);
+    form.submit();
+}
+
+    // Function to extract query parameters from URL
+    function getQueryParams() {
+        var params = {};
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+            params[key] = value;
+        });
+        return params;
+    }
+
+        // Retrieve username from query parameters
+        var queryParams = getQueryParams();
+        var username = queryParams['username'];
+        // Display the username
+        if (username) {
+            document.getElementById('username').innerHTML = '<h2>Welcome, ' + username + '!</h2>';
+        } else {
+            document.getElementById('username').innerHTML = '<h2>Welcome, Guest!</h2>';
+        }
+
+        </script>
+
+        
+</body>
+</html>

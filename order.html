@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ordering Page</title>
+<style>
+    /* Basic styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+    }
+    .product {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+    .product h3 {
+        margin-top: 0;
+    }
+    .product p {
+        margin-bottom: 10px;
+    }
+    .product button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .product button:hover {
+        background-color: #45a049;
+    }
+    .cart {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-top: 20px;
+    }
+    .cart ul {
+        padding: 0;
+        list-style-type: none;
+    }
+    .cart li {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .cart input[type="number"] {
+        width: 50px;
+        text-align: center;
+    }
+    .cart button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .cart button:hover {
+        background-color: #d32f2f;
+    }
+    .cart .buy-button {
+        background-color: #4CAF50;
+    }
+    .cart .buy-button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Products</h2>
+    <div class="products">
+        <div class="product" id="product1">
+            <h3>hat</h3>
+            <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button onclick="addToCart('product1')">Add to Cart</button>
+        </div>
+        <div class="product" id="product2">
+            <h3>bat</h3>
+            <p>Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <button onclick="addToCart('product2')">Add to Cart</button>
+        </div>
+    </div>
+    <h2>Cart</h2>
+    <div class="cart" id="cart">
+        Cart is empty.
+        <button onclick="buyNow()">Buy Now</button>
+    </div>
+</div>
+<script>
+   // Cart array to hold product IDs and quantities
+   let cart = [];
+
+// Function to add product to cart
+function addToCart(productId) {
+    // Check if product already exists in cart
+    const existingItem = cart.find(item => item.productId === productId);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ productId: productId, quantity:1 });
+    }
+    updateCart();
+}
+
+// Function to update cart display
+function updateCart() {
+    const cartDiv = document.getElementById('cart');
+    if (cart.length === 0) {
+        cartDiv.innerHTML = 'Cart is empty.';
+    } else {
+        cartDiv.innerHTML = '<ul>';
+        cart.forEach(item => {
+            cartDiv.innerHTML += `
+                <li>
+                    ${item.productId} 
+                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.productId}', this.value)">
+                    <button onclick="removeFromCart('${item.productId}')">Remove</button>
+                </li>`;
+        });
+        cartDiv.innerHTML += '</ul>';
+        cartDiv.innerHTML += '<button onclick="buyNow()">Buy Now</button>';
+    }
+}
+
+// Function to update quantity of a product in cart
+function updateQuantity(productId, quantity) {
+    const itemIndex = cart.findIndex(item => item.productId === productId);
+    if (itemIndex !== -1) {
+        cart[itemIndex].quantity = parseInt(quantity);
+    }
+    updateCart();
+}
+
+// Function to remove product from cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.productId !== productId);
+    updateCart();
+}
+
+// Function to process purchase and transfer to order.html
+function buyNow() {
+    // Create query string from cart data
+    const queryString = cart.map(item => `productId=${encodeURIComponent(item.productId)}&quantity=${encodeURIComponent(item.quantity)}`).join('&');
+    
+    // Redirect to order.html with query string
+    window.location.href = 'myorder.html?' + queryString;
+}
+</script>
+
+</body>
+</html>

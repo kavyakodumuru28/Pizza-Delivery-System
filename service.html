@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Pizza Delight</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      h1{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size:40px ;
+        font-style:normal;
+        color:white;
+        position:absolute;
+        text-align: center;
+        justify-content: center;
+        left:650px;
+        top: 10px;
+      }
+    }
+
+    main {
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .service {
+      margin-bottom: 30px;
+      text-align: center;
+      flex: 0 0 20%; /* Adjust the width of each service */
+      background-color: #ffffff; /* White background */
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+      margin-top: 100px; /* Add margin to the top */
+    }
+    .service-logo {
+      margin-bottom: 30px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 50px auto 0;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .service-logo img {
+      max-width: 50%;
+      max-height: 50%;
+      border-radius: 50%;
+    }
+
+    .service h2 {
+      margin-top: 20px;
+      font-size: 24px;
+      color:black;
+    }
+
+    .service p {
+      color: rgb(19, 12, 12);
+    }
+
+    footer {
+      background-color: #343a40;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+   <h1>Our Services</h1>
+  <main>
+    <section class="service">
+      <div class="service-logo">
+        <img src="images\delivery_3063755.png" alt="Pizza Logo">
+      </div>
+      <h2>Pizza Delivery</h2>
+      <p>Enjoy prompt doorstep delivery of your favorite pizzas, ensuring hot and fresh enjoyment.</p>
+    </section>
+
+    <section class="service">
+      <div class="service-logo">
+        <img src="images\checkout_2435281.png" alt="Customization Logo">
+      </div>
+      <h2>Online Ordering</h2>
+      <p>Conveniently place orders via our website or app, with secure payment options.</p>
+    </section>
+
+    <section class="service">
+      <div class="service-logo">
+        <img src="images\pizza_1411423.png" alt="Delivery Logo">
+      </div>
+      <h2>Customization Options</h2>
+      <p>Tailor your pizzas to perfection with a diverse selection of toppings, crusts, and sauces, ensuring a personalized culinary delight.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Pizza Delight. All rights reserved.</p>
+  </footer>
+</body>
+</html>
